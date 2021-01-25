@@ -1,2 +1,28 @@
-﻿
-<h1>Hello World</h1>
+﻿@*this will change if user is logged in in the future*@
+
+<h1>Hello Gloomy Collector</h1>
+
+<p>
+    <a asp-controller="Home" asp-action="Add">Add Gloomy</a>
+</p>
+
+@** Add (this will be dependent on admin privileges)*@
+
+@*@Table with ViewAll*@
+<ul>
+    @foreach (string gloomie in ViewBag.gloomies)
+    {
+        <li>@gloomie</li>
+    }
+</ul>
+@*Form*@
+
+<div class="submitForm">
+<form>
+    Name:<input type='text' name='uName' />
+    Serial Number:<input type='text' name="uSerial" />
+    Year:<input type="text" name="uYear" />
+    Extra Details:<input type="text" name="uExtra" />
+    <input type="submit"/>
+</form>
+</div>

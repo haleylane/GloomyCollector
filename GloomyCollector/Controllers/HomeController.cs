@@ -11,6 +11,8 @@ namespace GloomyCollector.Controllers
 {
     public class HomeController : Controller
     {
+        static private List<string> Gloomies = new List<string>();
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -20,7 +22,23 @@ namespace GloomyCollector.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.gloomies = Gloomies;
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("/Home/Add")]
+        public IActionResult NewGloomy(string serialNumber)
+        {
+            Gloomies.Add(serialNumber);
+
+            return Redirect("/Home");
         }
 
         public IActionResult Privacy()
