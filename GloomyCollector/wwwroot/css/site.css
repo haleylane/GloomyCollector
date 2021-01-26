@@ -75,3 +75,7 @@ body {
     border-style: solid;
     background-color: lightpink;
 }
+
+.logoImage{
+    max-width: 50px;
+}
