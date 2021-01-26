@@ -1,6 +1,8 @@
-﻿@*this will change if user is logged in in the future*@
+﻿@**<header><link rel="'stylesheet" type="text/css" href="~/css/custom.css" /></header>
+@*this will change if user is logged in in the future*@
 
 <h1>Hello Gloomy Collector</h1>
+
 
 <p>
     <a asp-controller="Home" asp-action="Add">Add Gloomy</a>
@@ -17,8 +19,8 @@
 </ul>
 @*Form*@
 
-<div class="submitForm">
-<form>
+<div>
+<form class="submitForm">
     Name:<input type='text' name='uName' />
     Serial Number:<input type='text' name="uSerial" />
     Year:<input type="text" name="uYear" />
@@ -26,4 +28,6 @@
     <input type="submit"/>
 </form>
 </div>
-@*testing if i can push to new branch*@
+
+@**<partial name="/Views/Shared/_LinkListPartial.cshtml" />*@
+
