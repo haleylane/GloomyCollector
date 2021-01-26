@@ -11,7 +11,7 @@ namespace GloomyCollector.Controllers
 {
     public class HomeController : Controller
     {
-        static private List<string> Gloomies = new List<string>();
+        static private List<Gloomy> Gloomies = new List<Gloomy>();
 
         private readonly ILogger<HomeController> _logger;
 
@@ -34,9 +34,9 @@ namespace GloomyCollector.Controllers
 
         [HttpPost]
         [Route("/Home/Add")]
-        public IActionResult NewGloomy(string serialNumber)
+        public IActionResult NewGloomy(Gloomy newGloomy)
         {
-            Gloomies.Add(serialNumber);
+            Gloomies.Add(newGloomy);
 
             return Redirect("/Home");
         }
