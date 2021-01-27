@@ -1,5 +1,8 @@
 ﻿@**<header><link rel="'stylesheet" type="text/css" href="~/css/custom.css" /></header>
 @*this will change if user is logged in in the future*@
+@using GloomyCollector.Models
+
+@model List<Gloomy>
 
 <h1>Hello Gloomy Collector</h1>
 
@@ -14,7 +17,7 @@
 @** Add (this will be dependent on admin privileges)*@
 
 @*@Table with ViewAll*@
-@if (ViewBag.gloomies.Count == 0)
+@if (Model.Count == 0)
 {
     <p>No Gloomies yet!</p>
 }
@@ -32,7 +35,7 @@ else
             Year
         </th>
     </tr>
-    @foreach (Gloomy gloomie in ViewBag.gloomies)
+    @foreach (Gloomy gloomie in Model)
     {
         <tr>
             <td>@gloomie.Name</td>

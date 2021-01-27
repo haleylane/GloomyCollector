@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GloomyCollector.Data;
 using GloomyCollector.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,9 @@ namespace GloomyCollector.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.gloomies = GloomyData.GetAll();
+            List<Gloomy> gloomies = new List<Gloomy>(GloomyData.GetAll());
 
-            return View();
+            return View(gloomies);
         }
 
         public IActionResult Add()
