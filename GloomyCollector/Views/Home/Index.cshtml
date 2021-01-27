@@ -11,15 +11,37 @@
 @** Add (this will be dependent on admin privileges)*@
 
 @*@Table with ViewAll*@
-<ul>
-    @foreach (string gloomie in ViewBag.gloomies)
+@if (ViewBag.gloomies.Count == 0)
+{
+    <p>No Gloomies yet!</p>
+}
+else
+{
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Serial Number
+        </th>
+        <th>
+            Year
+        </th>
+    </tr>
+    @foreach (Gloomy gloomie in ViewBag.gloomies)
     {
-        <li>@gloomie</li>
+        <tr>
+            <td>@gloomie.Name</td>
+            <td>@gloomie.SerialNumber</td>
+            <td>@gloomie.Year</td>
+        </tr>
     }
-</ul>
+</table>}
 @*Form*@
 
 <div>
+    <p>Did we miss a Gloomy? Fill out this form to help us keep our database full!</p>
 <form class="submitForm">
     Name:<input type='text' name='uName' />
     Serial Number:<input type='text' name="uSerial" />
@@ -29,5 +51,5 @@
 </form>
 </div>
 
-@**<partial name="/Views/Shared/_LinkListPartial.cshtml" />*@
-
+@**<partial name="/Views/Shared/_LinkListPartial.cshtml" />
+<partial name="/Views/Shared/_ThankYouPartial.cshtml"/>*@
