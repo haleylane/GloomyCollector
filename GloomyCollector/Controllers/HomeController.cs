@@ -23,10 +23,10 @@ namespace GloomyCollector.Controllers
         public IActionResult Index()
         {
             ViewBag.gloomies = GloomyData.GetAll();
-            return View();
+            return Redirect("/Gloomies");
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult Add()
         {
             return View();
@@ -39,7 +39,7 @@ namespace GloomyCollector.Controllers
             GloomyData.Add(newGloomy);
 
             return Redirect("/Home");
-        }
+        }*/
 
         public IActionResult Privacy()
         {
@@ -51,5 +51,11 @@ namespace GloomyCollector.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        /*public IActionResult Delete()
+        {
+            ViewBag.gloomies = GloomyData.GetAll(); 
+            return View();
+        }*/
     }
 }
