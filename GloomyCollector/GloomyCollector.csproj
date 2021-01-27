@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\gbface.png" />

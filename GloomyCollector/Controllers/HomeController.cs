@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GloomyCollector.Models;
+using GloomyCollector.Data;
 
 namespace GloomyCollector.Controllers
 {
     public class HomeController : Controller
     {
-        static private List<Gloomy> Gloomies = new List<Gloomy>();
 
         private readonly ILogger<HomeController> _logger;
 
@@ -22,7 +22,7 @@ namespace GloomyCollector.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.gloomies = Gloomies;
+            ViewBag.gloomies = GloomyData.GetAll();
             return View();
         }
 
@@ -36,7 +36,7 @@ namespace GloomyCollector.Controllers
         [Route("/Home/Add")]
         public IActionResult NewGloomy(Gloomy newGloomy)
         {
-            Gloomies.Add(newGloomy);
+            GloomyData.Add(newGloomy);
 
             return Redirect("/Home");
         }
