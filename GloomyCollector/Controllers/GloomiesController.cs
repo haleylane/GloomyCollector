@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GloomyCollector.Data;
 using GloomyCollector.Models;
+using GloomyCollector.ViewModels.GloomyCollector.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloomyCollector.Controllers
@@ -17,15 +18,31 @@ namespace GloomyCollector.Controllers
 
         public IActionResult Add()
         {
-            return View();
-        }
+            AddGloomyViewModel addGloomyViewModel = new AddGloomyViewModel();
 
+            return View(addGloomyViewModel);
+        }
+        
         [HttpPost]
-        [Route("Gloomies/Add")]
-        public IActionResult NewGloomy(Gloomy newGloomy)
+        public IActionResult Add(AddGloomyViewModel addGloomyViewModel)
+
         {
-            GloomyData.Add(newGloomy);
-            return Redirect("/Gloomies");
+            //checks if validation in gloomyviewmodel is correct
+            if (ModelState.IsValid)
+            {
+                Gloomy newGloomy = new Gloomy
+                {
+                    SerialNumber = addGloomyViewModel.SerialNumber,
+                    Name = addGloomyViewModel.Name,
+                    Year = addGloomyViewModel.Year,
+                    ImageData = addGloomyViewModel.ImageData
+                };
+
+                GloomyData.Add(newGloomy);
+
+                return Redirect("/Gloomies");
+            }
+            return View(addGloomyViewModel);
         }
 
         public IActionResult Delete()

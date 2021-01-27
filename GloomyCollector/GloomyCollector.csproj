@@ -8,6 +8,7 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Gloomies\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\gbface.png" />
