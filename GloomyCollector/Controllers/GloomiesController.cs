@@ -32,5 +32,16 @@ namespace GloomyCollector.Controllers
             ViewBag.gloomies = GloomyData.GetAll();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Delete(int[] gloomiesId)
+        {
+            foreach(int gloomyId in gloomiesId)
+            {
+                GloomyData.Remove(gloomyId);
+            }
+
+            return Redirect("/Gloomies");
+        }
     }
 }
