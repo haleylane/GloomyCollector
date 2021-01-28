@@ -83,3 +83,7 @@ body {
 .thankYou{
     color: hotpink;
 }
+
+.field-validation-error {
+    color: red;
+}
