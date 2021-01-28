@@ -22,7 +22,7 @@ namespace GloomyCollector.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.gloomies = GloomyData.GetAll();
+            //ViewBag.gloomies = GloomyData.GetAll();
             return Redirect("/Gloomies");
         }
 

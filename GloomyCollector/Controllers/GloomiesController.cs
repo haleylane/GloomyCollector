@@ -12,9 +12,17 @@ namespace GloomyCollector.Controllers
 {
     public class GloomiesController : Controller
     {
+        private GloomyDbContext context;
+
+        public GloomiesController(GloomyDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
+        // Get: /<controller>/
         public IActionResult Index()
         {
-            List<Gloomy> gloomies = new List<Gloomy>(GloomyData.GetAll());
+            List<Gloomy> gloomies = context.Gloomies.ToList();
 
             return View(gloomies);
         }
@@ -41,7 +49,8 @@ namespace GloomyCollector.Controllers
                     ImageData = addGloomyViewModel.ImageData
                 };
 
-                GloomyData.Add(newGloomy);
+                context.Gloomies.Add(newGloomy);
+                context.SaveChanges();
 
                 return Redirect("/Gloomies");
             }
@@ -50,7 +59,8 @@ namespace GloomyCollector.Controllers
 
         public IActionResult Delete()
         {
-            ViewBag.gloomies = GloomyData.GetAll();
+            ViewBag.gloomies = context.Gloomies.ToList();
+
             return View();
         }
 
@@ -59,8 +69,10 @@ namespace GloomyCollector.Controllers
         {
             foreach(int gloomyId in gloomiesId)
             {
-                GloomyData.Remove(gloomyId);
+                Gloomy theGloomy = context.Gloomies.Find(gloomyId);
+                context.Gloomies.Remove(theGloomy);
             }
+            context.SaveChanges();
 
             return Redirect("/Gloomies");
         }
