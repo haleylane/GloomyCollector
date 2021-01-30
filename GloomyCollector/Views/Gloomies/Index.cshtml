@@ -26,6 +26,9 @@ else
 <table class="table">
     <tr>
         <th>
+            ❤︎
+        </th>
+        <th>
             Name
         </th>
         <th>
@@ -37,11 +40,12 @@ else
     </tr>
     @foreach (Gloomy gloomie in Model)
     {
-        <tr>
-            <td>@gloomie.Name</td>
-            <td>@gloomie.SerialNumber</td>
-            <td>@gloomie.Year</td>
-        </tr>
+<tr>
+    <td><img class="tableImage" src="@gloomie.ImageData" /></td>
+    <td>@gloomie.Name</td>
+    <td>@gloomie.SerialNumber</td>
+    <td>@gloomie.Year</td>
+</tr>
     }
 </table>}
 @*Form*@

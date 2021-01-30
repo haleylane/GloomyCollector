@@ -87,3 +87,7 @@ body {
 .field-validation-error {
     color: red;
 }
+
+.tableImage{
+    max-width: 50px;
+}
