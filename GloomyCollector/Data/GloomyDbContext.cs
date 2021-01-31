@@ -13,3 +13,4 @@ namespace GloomyCollector.Data
         }
     }
 }
+

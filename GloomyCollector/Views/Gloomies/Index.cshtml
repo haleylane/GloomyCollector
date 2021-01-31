@@ -42,7 +42,7 @@ else
     {
 <tr>
     <td><img class="tableImage" src="@gloomie.ImageData" /></td>
-    <td>@gloomie.Name</td>
+    <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
     <td>@gloomie.SerialNumber</td>
     <td>@gloomie.Year</td>
 </tr>
