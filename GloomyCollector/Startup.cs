@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GloomyCollector.Data;
+using GloomyCollector.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,9 @@ namespace GloomyCollector
             //services.AddDbContext<GloomyDbContext>(options =>
             // options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
+
+            //you might want to remove this if things do not work:
+            //services.AddIdentity<GloomyUser, IdentityRole>().AddEntityFrameworkStores<GloomyDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

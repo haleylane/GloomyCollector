@@ -1,5 +1,14 @@
-﻿@**<header><link rel="'stylesheet" type="text/css" href="~/css/custom.css" /></header>
-@*this will change if user is logged in in the future*@
+﻿@***header><link rel="'stylesheet" type="text/css" href="~/css/custom.css" /></header>
+<header>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    @section scripts{
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+        <script>$(document).ready(function () {
+                $('#gloomyTable').dataTable();</script>
+    }
+</header>*@
+
+
 @using GloomyCollector.Models
 
 @model List<Gloomy>
@@ -24,31 +33,35 @@
 }
 else
 {
-<table class="table">
-    <tr>
-        <th>
-            ❤︎
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Serial Number
-        </th>
-        <th>
-            Year
-        </th>
-    </tr>
-    @foreach (Gloomy gloomie in Model)
-    {
-<tr>
-    <td><img class="tableImage" src="@gloomie.ImageData" /></td>
-    <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
-    <td>@gloomie.SerialNumber</td>
-    <td>@gloomie.Year</td>
-</tr>
-    }
-</table>}
+    <table class="table" id="gloomyTable">
+        <thead>
+            <tr>
+                <th>
+                    ❤︎
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Serial Number
+                </th>
+                <th>
+                    Year
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Gloomy gloomie in Model)
+            {
+                <tr>
+                    <td><img class="tableImage" src="@gloomie.ImageData" /></td>
+                    <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
+                    <td>@gloomie.SerialNumber</td>
+                    <td>@gloomie.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>}
 
 
 <div>
@@ -64,4 +77,4 @@ else
 </div>
 
 @**<partial name="/Views/Shared/_LinkListPartial.cshtml" />
-<partial name="/Views/Shared/_ThankYouPartial.cshtml"/>*@
+    <partial name="/Views/Shared/_ThankYouPartial.cshtml"/>*@

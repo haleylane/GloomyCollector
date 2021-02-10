@@ -3,14 +3,16 @@ using System;
 using GloomyCollector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GloomyCollector.Migrations
 {
     [DbContext(typeof(GloomyDbContext))]
-    partial class GloomyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210210165816_7thMigration")]
+    partial class _7thMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,9 +24,6 @@ namespace GloomyCollector.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("GloomyUserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("ImageData")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -39,8 +38,6 @@ namespace GloomyCollector.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GloomyUserId");
 
                     b.ToTable("Gloomies");
                 });
@@ -106,10 +103,6 @@ namespace GloomyCollector.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Email")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
@@ -160,8 +153,6 @@ namespace GloomyCollector.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -245,20 +236,6 @@ namespace GloomyCollector.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GloomyCollector.Models.GloomyUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("GloomyUser");
-                });
-
-            modelBuilder.Entity("GloomyCollector.Models.Gloomy", b =>
-                {
-                    b.HasOne("GloomyCollector.Models.GloomyUser", null)
-                        .WithMany("WishList")
-                        .HasForeignKey("GloomyUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

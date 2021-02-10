@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GloomyCollector.Data
+
 {
-    public class GloomyDbContext : IdentityDbContext<IdentityUser>
+    //changed from IdentityUser to GloomyUser, now changed back
+    public partial class GloomyDbContext : IdentityDbContext<IdentityUser>
+    //public class GloomyDbContext: DbContext
     {
         public DbSet<Gloomy> Gloomies { get; set; }
+        public DbSet<GloomyUser> GloomyUsers { get; set; }
 
         public GloomyDbContext(DbContextOptions<GloomyDbContext> options) : base(options)
         {
@@ -19,5 +23,6 @@ namespace GloomyCollector.Data
             base.OnModelCreating(modelBuilder);
         }
     }
+
 }
 

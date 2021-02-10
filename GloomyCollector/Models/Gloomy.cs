@@ -47,4 +47,5 @@ namespace GloomyCollector.Models
             return HashCode.Combine(Id);
         }
     }
+
 }
