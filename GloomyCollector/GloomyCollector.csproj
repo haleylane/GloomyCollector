@@ -21,6 +21,7 @@
     <Content Remove="wwwroot\images\gbface.png" />
     <Content Remove="wwwroot\images\gbface.png" />
     <Content Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+    <Content Remove="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />

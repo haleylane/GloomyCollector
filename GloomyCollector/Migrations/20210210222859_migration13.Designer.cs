@@ -3,14 +3,16 @@ using System;
 using GloomyCollector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GloomyCollector.Migrations
 {
     [DbContext(typeof(GloomyDbContext))]
-    partial class GloomyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210210222859_migration13")]
+    partial class migration13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,26 +45,6 @@ namespace GloomyCollector.Migrations
                     b.HasIndex("GloomyUserId");
 
                     b.ToTable("Gloomies");
-                });
-
-            modelBuilder.Entity("GloomyCollector.Models.WishList", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GloomyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GloomyUserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("UserId", "GloomyId");
-
-                    b.HasIndex("GloomyId");
-
-                    b.HasIndex("GloomyUserId");
-
-                    b.ToTable("WishLists");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -281,19 +263,6 @@ namespace GloomyCollector.Migrations
                 {
                     b.HasOne("GloomyCollector.Models.GloomyUser", null)
                         .WithMany("WishList")
-                        .HasForeignKey("GloomyUserId");
-                });
-
-            modelBuilder.Entity("GloomyCollector.Models.WishList", b =>
-                {
-                    b.HasOne("GloomyCollector.Models.Gloomy", "Gloomy")
-                        .WithMany()
-                        .HasForeignKey("GloomyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GloomyCollector.Models.GloomyUser", "GloomyUser")
-                        .WithMany()
                         .HasForeignKey("GloomyUserId");
                 });
 

@@ -13,15 +13,20 @@ namespace GloomyCollector.Data
     {
         public DbSet<Gloomy> Gloomies { get; set; }
         public DbSet<GloomyUser> GloomyUsers { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
 
         public GloomyDbContext(DbContextOptions<GloomyDbContext> options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<WishList>().HasKey(et => new { et.UserId, et.GloomyId });
         }
+
+
     }
 
 }
