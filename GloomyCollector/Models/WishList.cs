@@ -3,7 +3,7 @@ namespace GloomyCollector.Models
 {
     public class WishList
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public GloomyUser GloomyUser { get; set; }
 
         public int GloomyId { get; set; }

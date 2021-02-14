@@ -1,0 +1,14 @@
+﻿@model GloomyCollector.ViewModels.AddWishListViewModel
+
+<h1>Add Gloomy To WishList: @*@Model.GloomyUser.FirstName*@</h1>
+
+<form asp-controller="Gloomies" asp-action="AddWishList" method="post">
+    <input type="hidden" value="@Model.GloomyUser.Id" name="UserId"/>
+    <div class="form-group">
+        <label asp-for="GloomyId">Gloomy</label>
+
+        <select asp-for="GloomyId" asp-items="Model.Gloomies"></select>
+        <span asp-validation-for="GloomyId"></span>
+    </div>
+    <input type="submit" value="Add Gloomy" />
+</form>

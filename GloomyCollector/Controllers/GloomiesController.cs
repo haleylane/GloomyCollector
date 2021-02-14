@@ -9,6 +9,7 @@ using GloomyCollector.Models;
 using GloomyCollector.ViewModels.GloomyCollector.ViewModels;
 using GloomyCollector.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GloomyCollector.Controllers
 {
@@ -22,6 +23,7 @@ namespace GloomyCollector.Controllers
         }
 
         // Get: /<controller>/
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<Gloomy> gloomies = context.Gloomies.ToList();
@@ -37,6 +39,7 @@ namespace GloomyCollector.Controllers
         }
 
         [HttpPost]
+        //limit to only admin
         public IActionResult Add(AddGloomyViewModel addGloomyViewModel)
 
         {
@@ -59,6 +62,7 @@ namespace GloomyCollector.Controllers
             return View(addGloomyViewModel);
         }
 
+        //limit to only admin
         public IActionResult Delete()
         {
             ViewBag.gloomies = context.Gloomies.ToList();
@@ -67,6 +71,7 @@ namespace GloomyCollector.Controllers
         }
 
         [HttpPost]
+        //limit to only admin
         public IActionResult Delete(int[] gloomiesId)
         {
             foreach (int gloomyId in gloomiesId)
@@ -79,6 +84,7 @@ namespace GloomyCollector.Controllers
             return Redirect("/Gloomies");
         }
 
+        //limit to only admin
         [HttpGet]
         [Route("/gloomies/detail/{gloomyId}")]
         public IActionResult Detail(int gloomyId)
@@ -101,6 +107,41 @@ namespace GloomyCollector.Controllers
                     return Redirect("/Gloomies");
                 }
             }
+
+
+        }
+
+        [Authorize]
+        public IActionResult AddWishList(string id)
+        {
+            GloomyUser theGloomyUser = context.GloomyUsers.Find(id);
+            List<Gloomy> possibleGloomies = context.Gloomies.ToList();
+
+            AddWishListViewModel viewModel = new AddWishListViewModel(theGloomyUser, possibleGloomies);
+
+            return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddWishList(AddWishListViewModel viewModel)
+        {
+            if (ModelState.IsValid){
+                string userId = viewModel.UserId;
+                int gloomyId = viewModel.GloomyId;
+
+                WishList wishList = new WishList
+                {
+                    UserId = userId,
+                    GloomyId = gloomyId
+                };
+                context.WishLists.Add(wishList);
+                context.SaveChanges();
+
+                return Redirect("/Gloomies/Detail/" + gloomyId);
+            }
+
+            return View(viewModel);
         }
     }
 }
