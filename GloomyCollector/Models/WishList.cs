@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace GloomyCollector.Models
 {
+    [Table("WishLists")]
     public class WishList
     {
         public string UserId { get; set; }

@@ -9,11 +9,15 @@ namespace GloomyCollector.Models
     public class GloomyUser : IdentityUser
     {
         public string FirstName { get; set; }
-        public List<Gloomy> WishList { get; set; }
+        //public List<Gloomy> WishList { get; set; }
+        public int Id { get; set; }
+
+    }
+}
 
         //public string Name { get; set; }
 
-        //public int Id { get; set; }
+        
 
 
         /*public GloomyUser(List<Gloomy> wishList)
@@ -35,7 +39,7 @@ namespace GloomyCollector.Models
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
-        }*/
+        }
 
     }
-}
+}*/

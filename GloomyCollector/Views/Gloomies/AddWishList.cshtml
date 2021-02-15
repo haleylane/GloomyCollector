@@ -1,9 +1,22 @@
 ﻿@model GloomyCollector.ViewModels.AddWishListViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+<h1>Add Gloomy To WishList: @UserManager.GetUserName(User)!</h1>
+    <form asp-controller="Gloomies" asp-action="AddWishList" method="post">
+        <input type="hidden" value="@UserManager.GetUserId(User)" name="UserId"/>
+        <div class="form-group">
+            <label asp-for="GloomyId">Gloomy</label>
 
-<h1>Add Gloomy To WishList: @*@Model.GloomyUser.FirstName*@</h1>
+            <select asp-for="GloomyId" asp-items="Model.Gloomies"></select>
+            <span asp-validation-for="GloomyId"></span>
+        </div>
+        <input type="submit" value="Add Gloomy" />
+    </form>
 
+@**<h1>Add Gloomy To WishList: @UserManager.GetUserName(User)! </h1>
 <form asp-controller="Gloomies" asp-action="AddWishList" method="post">
-    <input type="hidden" value="@Model.GloomyUser.Id" name="UserId"/>
+    <input type="hidden" value="@UserManager.GetUserId(User)" name="UserId" />
+   
     <div class="form-group">
         <label asp-for="GloomyId">Gloomy</label>
 
@@ -11,4 +24,4 @@
         <span asp-validation-for="GloomyId"></span>
     </div>
     <input type="submit" value="Add Gloomy" />
-</form>
+</form>*@

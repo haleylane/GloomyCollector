@@ -3,14 +3,16 @@ using System;
 using GloomyCollector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GloomyCollector.Migrations
 {
     [DbContext(typeof(GloomyDbContext))]
-    partial class GloomyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210214230416_24")]
+    partial class _24
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -3,14 +3,16 @@ using System;
 using GloomyCollector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GloomyCollector.Migrations
 {
     [DbContext(typeof(GloomyDbContext))]
-    partial class GloomyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210214194314_15thMig")]
+    partial class _15thMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +24,9 @@ namespace GloomyCollector.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("GloomyUserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("ImageData")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -37,13 +42,15 @@ namespace GloomyCollector.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GloomyUserId");
+
                     b.ToTable("Gloomies");
                 });
 
             modelBuilder.Entity("GloomyCollector.Models.WishList", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("GloomyId")
                         .HasColumnType("int");
@@ -270,6 +277,13 @@ namespace GloomyCollector.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasDiscriminator().HasValue("GloomyUser");
+                });
+
+            modelBuilder.Entity("GloomyCollector.Models.Gloomy", b =>
+                {
+                    b.HasOne("GloomyCollector.Models.GloomyUser", null)
+                        .WithMany("WishList")
+                        .HasForeignKey("GloomyUserId");
                 });
 
             modelBuilder.Entity("GloomyCollector.Models.WishList", b =>
