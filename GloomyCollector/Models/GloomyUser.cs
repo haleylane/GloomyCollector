@@ -9,8 +9,15 @@ namespace GloomyCollector.Models
     public class GloomyUser : IdentityUser
     {
         public string FirstName { get; set; }
-        //public List<Gloomy> WishList { get; set; }
+        //changed from public override string Id {Get; set;}
         public int Id { get; set; }
+
+        //public string Id { get; set; }
+
+      /*public GloomyUser(string Id)
+        {
+            this.Id = Id;
+        }*/
 
     }
 }

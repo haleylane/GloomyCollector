@@ -83,7 +83,7 @@ namespace GloomyCollector.Controllers
             return Redirect("/Gloomies");
         }
 
-        
+
         [HttpGet]
         [Route("/gloomies/detail/{gloomyId}")]
         public IActionResult Detail(int gloomyId)
@@ -126,7 +126,7 @@ namespace GloomyCollector.Controllers
         public IActionResult AddWishList(AddWishListViewModel viewModel)
         {
             if (ModelState.IsValid)
-           {
+            {
                 string userId = viewModel.UserId;
                 int gloomyId = viewModel.GloomyId;
 
@@ -152,7 +152,6 @@ namespace GloomyCollector.Controllers
             List<WishList> wishLists = context.WishLists.Where(e => e.UserId == userId).Include(e => e.GloomyId).ToList();
             MyWishListViewModel viewModel = new MyWishListViewModel(wishLists);
             return View(viewModel);
-
         }*/
     }
 }

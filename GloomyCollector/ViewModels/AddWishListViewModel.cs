@@ -14,6 +14,8 @@ namespace GloomyCollector.ViewModels
 
         public int GloomyId { get; set; }
 
+        //public string GloomyUserId { get; set; }
+
         public AddWishListViewModel(GloomyUser gloomyUser, List<Gloomy> possibleGloomies)
         {
             Gloomies = new List<SelectListItem>();

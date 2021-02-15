@@ -23,10 +23,10 @@ namespace GloomyCollector.Data
 
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<WishList>().HasKey(et => new { et.UserId, et.GloomyId });
+            modelBuilder.Entity<WishList>().HasKey(et => new { et.UserId, et.GloomyId});
         }
 
-
+        
     }
 
 }
