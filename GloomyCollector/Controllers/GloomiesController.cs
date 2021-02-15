@@ -153,5 +153,13 @@ namespace GloomyCollector.Controllers
             MyWishListViewModel viewModel = new MyWishListViewModel(wishLists);
             return View(viewModel);
         }*/
+
+        public IActionResult MyWishList(string id)
+        {
+            List<WishList> gloomyIds = context.WishLists.Where(g => g.UserId == id).Include(g => g.GloomyId).ToList();
+
+            MyWishListViewModel viewModel = new MyWishListViewModel(gloomyIds);
+            return View(viewModel);
+         }
     }
 }

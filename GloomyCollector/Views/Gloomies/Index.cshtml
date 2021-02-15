@@ -40,6 +40,9 @@ else
                     ❤︎
                 </th>
                 <th>
+                    Image
+                </th>
+                <th>
                     Name
                 </th>
                 <th>
@@ -54,6 +57,7 @@ else
             @foreach (Gloomy gloomie in Model)
             {
                 <tr>
+                    <td><a asp-controller="Gloomies" asp-action="AddWishList" asp-route-id="@UserManager.GetUserId(User)">+</a></td>
                     <td><img class="tableImage" src="@gloomie.ImageData" /></td>
                     <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
                     <td>@gloomie.SerialNumber</td>

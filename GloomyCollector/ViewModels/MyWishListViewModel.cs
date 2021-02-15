@@ -4,29 +4,31 @@ using GloomyCollector.Models;
 
 namespace GloomyCollector.ViewModels
 {
-    /*public class MyWishListViewModel
+    public class MyWishListViewModel
     {
-        private List<WishList> wishLists;
+        
+            //public List<Wishist>
+            //gloomy info
 
-        public string UserId { get; }
-        //public List<WishList> WishLists { get; }
+            /*public MyWishListViewModel(List<int> gloomyIds){
+                for (var i = 0; i < gloomyIds.Count; i++) {
+                }*/
+            public string TagText { get; set; }
+            public MyWishListViewModel(List<WishList> gloomyIds)
+            {
 
-        public MyWishListViewModel(WishList wishList)
-        {
-            this.UserId = UserId;
-            //this.WishLists = WishLists;
-        }
+                TagText = "";
 
-        public MyWishListViewModel(List<WishList> wishLists)
-        {
-            this.wishLists = wishLists;
-        }
+                for (var i = 0; i < gloomyIds.Count; i++)
+                {
+                    TagText += "#" + gloomyIds[i].GloomyId;
 
-        /*public MyWishListViewModel(List<WishList> wishLists)
-        {
-            WishLists = wishLists;
+                    if (i < gloomyIds.Count - 1)
+                    {
+                        TagText += ", ";
+                    }
+                }
+            
         }
     }
-        */
-    
 }
