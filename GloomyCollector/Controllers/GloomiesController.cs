@@ -156,7 +156,10 @@ namespace GloomyCollector.Controllers
 
         public IActionResult MyWishList(string id)
         {
-            List<WishList> gloomyIds = context.WishLists.Where(g => g.UserId == id).Include(g => g.GloomyId).ToList();
+            //what we need:
+            //use the gloomyIds that are received where g => g.UserId.ToList... for every gloomy id in this list, return the gloomy and add that gloomy to a list., we should return a list of gloomies
+
+            List<WishList> gloomyIds = context.WishLists.Where(g => g.UserId == id).ToList();
 
             MyWishListViewModel viewModel = new MyWishListViewModel(gloomyIds);
             return View(viewModel);
