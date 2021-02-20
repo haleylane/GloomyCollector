@@ -27,10 +27,13 @@ namespace GloomyCollector
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
 
             //services.AddDbContext<GloomyDbContext>(options =>
             // options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            //take this out if things break:
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false);
             services.AddRazorPages();
 
             //you might want to remove this if things do not work:

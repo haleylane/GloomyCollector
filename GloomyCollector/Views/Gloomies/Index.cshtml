@@ -23,6 +23,12 @@
 <p>
     <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a>
 </p>
+<p>
+    <a asp-controller="Gloomies" asp-action="AddWishList">Add to WishList</a>
+</p>
+<p>
+    <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)">My WishList</a>
+</p>
 
 @** Add (this will be dependent on admin privileges)*@
 

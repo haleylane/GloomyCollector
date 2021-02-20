@@ -139,7 +139,8 @@ namespace GloomyCollector.Controllers
                 context.SaveChanges();
 
                 //return Redirect("/Gloomies/MyWishList/"):
-                return Redirect("/Gloomies/Detail/" + gloomyId);
+                //return Redirect("/Gloomies/Detail/" + gloomyId);
+                return Redirect("/Gloomies/MyWishList/" + userId);
             }
 
             return View(viewModel);

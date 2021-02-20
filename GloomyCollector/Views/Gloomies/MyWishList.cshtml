@@ -3,65 +3,104 @@
 
 @inject UserManager<IdentityUser> UserManager
 @*
-@*//added listed up here, it used to only have atmodel gloomycollector.viewmodels.mywishlistviewmodel
-@model GloomyCollector.ViewModels.MyWishListViewModel
-@*this will say hello username when user login feature is added
-@model Gloomy
-<h1>Hello @UserManager.GetUserName(User)!</h1>
+    @*//added listed up here, it used to only have atmodel gloomycollector.viewmodels.mywishlistviewmodel
+    @model GloomyCollector.ViewModels.MyWishListViewModel
+    @*this will say hello username when user login feature is added
+    @model Gloomy
+    <h1>Hello @UserManager.GetUserName(User)!</h1>
 
 
-<p>
-    <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a>
-</p>
-<p>
-    <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a>
-</p>
+    <p>
+        <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a>
+    </p>
+    <p>
+        <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a>
+    </p>
 
-@** Add (this will be dependent on admin privileges)
+    @** Add (this will be dependent on admin privileges)
 
-@Table with ViewAll
-@if (Model.Count == 0)
-{
-    <p>No Gloomies yet!</p>
-}
-else
-{
-    <table class="table" id="gloomyTable" onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
-        <thead>
-            <tr>
-                <th>
-                    ❤︎
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Serial Number
-                </th>
-                <th>
-                    Year
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-           @* @foreach (Gloomy feedback in (System.Collections.Generic.IEnumerable
-          <Gloomy>)ViewData.Model)
-@foreach(Gloomy gloomy in gloomies)
-            //{
-                    <tr>
-                        <td><img class="tableImage" src="@Model.ImageData" /></td>
-                        <td>@Model.Name</td>
-                        <td>@Model.SerialNumber</td>
-                        <td>@Model.Year</td>
-                    </tr>
-           @* }
-        </tbody>
-    </table>
+    @Table with ViewAll
+    @if (Model.Count == 0)
+    {
+        <p>No Gloomies yet!</p>
+    }
+    else
+    {
+        <table class="table" id="gloomyTable" onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
+            <thead>
+                <tr>
+                    <th>
+                        ❤︎
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Serial Number
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+               @* @foreach (Gloomy feedback in (System.Collections.Generic.IEnumerable
+              <Gloomy>)ViewData.Model)
+    @foreach(Gloomy gloomy in gloomies)
+                //{
+                        <tr>
+                            <td><img class="tableImage" src="@Model.ImageData" /></td>
+                            <td>@Model.Name</td>
+                            <td>@Model.SerialNumber</td>
+                            <td>@Model.Year</td>
+                        </tr>
+               @* }
+            </tbody>
+        </table>
 *@
 
 <h1>@UserManager.GetUserName(User)!'s WishList:</h1>
-@for (int i = 0; i < ViewBag.wishListGloomies.Count; i++)
+@*@if(ViewBag.wishListGloomies.Count = 0)
 {
-    <p>@ViewBag.wishListGloomies[i].Name</p>
+    <p>No Gloomies yet!</p>
 }
+else {*@
 
+@foreach(Gloomy gloomy in ViewBag.wishListGloomies)
+{
+
+}
+<table class="table" id="gloomyTable">
+    <thead>
+        <tr>
+            <th>
+                ❤︎
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Serial Number
+            </th>
+            <th>
+                Year
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Gloomy gloomy in ViewBag.wishListGloomies)
+        {
+            <tr>
+                <td><img class="tableImage" src="~/@gloomy.ImageData" /></td>
+                <td>@gloomy.Name</td>
+                <td>@gloomy.SerialNumber</td>
+                <td>@gloomy.Year</td> 
+            </tr>}
+     </tbody>
+   </table>
+
+        
+
+
+        
+                
