@@ -2,10 +2,10 @@
 @using GloomyCollector.Models
 
 @inject UserManager<IdentityUser> UserManager
-
-@*//added listed up here, it used to only have atmodel gloomycollector.viewmodels.mywishlistviewmodel*@
-@*@model GloomyCollector.ViewModels.MyWishListViewModel*@
-@*this will say hello username when user login feature is added*@
+@*
+@*//added listed up here, it used to only have atmodel gloomycollector.viewmodels.mywishlistviewmodel
+@model GloomyCollector.ViewModels.MyWishListViewModel
+@*this will say hello username when user login feature is added
 @model Gloomy
 <h1>Hello @UserManager.GetUserName(User)!</h1>
 
@@ -17,15 +17,15 @@
     <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a>
 </p>
 
-@** Add (this will be dependent on admin privileges)*@
+@** Add (this will be dependent on admin privileges)
 
-@*@Table with ViewAll*@
-@*@if (Model.Count == 0)
+@Table with ViewAll
+@if (Model.Count == 0)
 {
     <p>No Gloomies yet!</p>
 }
 else
-{*@
+{
     <table class="table" id="gloomyTable" onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
         <thead>
             <tr>
@@ -45,17 +45,23 @@ else
         </thead>
         <tbody>
            @* @foreach (Gloomy feedback in (System.Collections.Generic.IEnumerable
-          <Gloomy>)ViewData.Model)*@
-@*@foreach(Gloomy gloomy in gloomies)
-            //{*@
+          <Gloomy>)ViewData.Model)
+@foreach(Gloomy gloomy in gloomies)
+            //{
                     <tr>
                         <td><img class="tableImage" src="@Model.ImageData" /></td>
                         <td>@Model.Name</td>
                         <td>@Model.SerialNumber</td>
                         <td>@Model.Year</td>
                     </tr>
-           @* }*@
+           @* }
         </tbody>
     </table>
+*@
 
+<h1>@UserManager.GetUserName(User)!'s WishList:</h1>
+@for (int i = 0; i < ViewBag.wishListGloomies.Count; i++)
+{
+    <p>@ViewBag.wishListGloomies[i].Name</p>
+}
 

@@ -154,6 +154,7 @@ namespace GloomyCollector.Controllers
             return View(viewModel);
         }*/
         //[HttpPost]
+        /*
         [Route("/gloomies/MyWishList/{userId?}")]
         public IActionResult MyWishList(string id)
         {
@@ -195,8 +196,24 @@ namespace GloomyCollector.Controllers
                 return View("NoGloomies");
             }
             return View();
+        }*/
+
+        [Route("/gloomies/MyWishList/{userId?}")]
+        public IActionResult MyWishList(string userId){
+            List<WishList> gloomyIdsWishLists = context.WishLists.Where(u => u.UserId == userId).ToList();
+            List<int> gloomyIds = gloomyIdsWishLists.Select(p => p.GloomyId).ToList();
+            List<Gloomy> wishGloomies = new List<Gloomy>();
+
+            foreach (int gloomy in gloomyIds)
+            {
+                IQueryable<Gloomy> gQuery = context.Gloomies.Where(i => i.Id == gloomy);
+                List<Gloomy> gQ = gQuery.ToList();
+                foreach(Gloomy g in gQ){
+                    wishGloomies.Add(g);
+                }
         }
-
-
-    }
+            ViewBag.wishListGloomies = wishGloomies;
+            return View();
+        }
+}
 }
