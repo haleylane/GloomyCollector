@@ -138,67 +138,14 @@ namespace GloomyCollector.Controllers
                 context.WishLists.Add(wishList);
                 context.SaveChanges();
 
-                //return Redirect("/Gloomies/MyWishList/"):
-                //return Redirect("/Gloomies/Detail/" + gloomyId);
+                
                 return Redirect("/Gloomies/MyWishList/" + userId);
             }
 
             return View(viewModel);
         }
 
-        /*[Authorize]
-        [Route("/gloomies/mywishlist/{userId}")]
-        public IActionResult MyWishList(string userId)
-        {
-            List<WishList> wishLists = context.WishLists.Where(e => e.UserId == userId).Include(e => e.GloomyId).ToList();
-            MyWishListViewModel viewModel = new MyWishListViewModel(wishLists);
-            return View(viewModel);
-        }*/
-        //[HttpPost]
-        /*
-        [Route("/gloomies/MyWishList/{userId?}")]
-        public IActionResult MyWishList(string id)
-        {
-            //what we need:
-            //use the gloomyIds that are received where g => g.UserId.ToList... for every gloomy id in this list, return the gloomy and add that gloomy to a list., we should return a list of gloomies
-
-            List<int> gloomyIds = context.WishLists.Where(g => g.UserId == id).Select(g => g.GloomyId).ToList();
-            List<Gloomy> wishGloomies = new List<Gloomy>();
-
-            if(gloomyIds.Count != 0){
-               
-                foreach (int gloomyId in gloomyIds)
-                {
-                    IQueryable<Gloomy> q= context.Gloomies.Where(g => g.Id.Equals(gloomyId));
-                    List<Gloomy> listableQ = q.ToList();
-                    if(listableQ.Count != 0){
-                        foreach (Gloomy listable in listableQ)
-                    {
-                            wishGloomies.Add(listable);
-                        }
-                    }
-                    else {
-                        return View("NoGloomies");
-                    }
-                if(wishGloomies.Count != 0){
-                        
-                            return View(wishGloomies);
-
-                    }
-                    else
-                {
-                        return View("NoGloomies");
-                    }
-                }
-            }
-            else
-            {
-            
-                return View("NoGloomies");
-            }
-            return View();
-        }*/
-
+        [Authorize]
         [Route("/gloomies/MyWishList/{userId?}")]
         public IActionResult MyWishList(string userId){
             List<WishList> gloomyIdsWishLists = context.WishLists.Where(u => u.UserId == userId).ToList();

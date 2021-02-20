@@ -30,9 +30,9 @@
     <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)">My WishList</a>
 </p>
 
-@** Add (this will be dependent on admin privileges)*@
+@** Add (this will be dependent on admin privileges)
 
-@*@Table with ViewAll*@
+@Table with ViewAll*@
 @if (Model.Count == 0)
 {
     <p>No Gloomies yet!</p>
@@ -45,9 +45,7 @@ else
                 <th>
                     ❤︎
                 </th>
-                <th>
-                    Image
-                </th>
+               
                 <th>
                     Name
                 </th>
@@ -63,7 +61,8 @@ else
             @foreach (Gloomy gloomie in Model)
             {
                 <tr onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
-                    <td><a asp-controller="Gloomies" asp-action="AddWishList" asp-route-id="@UserManager.GetUserId(User)" value="@UserManager.GetUserId(User)" >+</a></td>
+                    @*<td><a asp-controller="Gloomies" asp-action="AddWishList" asp-route-id="@UserManager.GetUserId(User)" value="@UserManager.GetUserId(User)" >+</a></td>
+                        @*<td><a href="/Gloomies/AddWishList/@gloomie.Id">+</a></td>*@
                     <td><img class="tableImage" src="@gloomie.ImageData" /></td>
                     <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
                     <td>@gloomie.SerialNumber</td>
@@ -85,6 +84,6 @@ else
     </form>
 
 </div>
-
+}
 @**<partial name="/Views/Shared/_LinkListPartial.cshtml" />
     <partial name="/Views/Shared/_ThankYouPartial.cshtml"/>*@
