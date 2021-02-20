@@ -153,16 +153,50 @@ namespace GloomyCollector.Controllers
             MyWishListViewModel viewModel = new MyWishListViewModel(wishLists);
             return View(viewModel);
         }*/
-
+        //[HttpPost]
+        [Route("/gloomies/MyWishList/{userId?}")]
         public IActionResult MyWishList(string id)
         {
             //what we need:
             //use the gloomyIds that are received where g => g.UserId.ToList... for every gloomy id in this list, return the gloomy and add that gloomy to a list., we should return a list of gloomies
 
-            List<WishList> gloomyIds = context.WishLists.Where(g => g.UserId == id).ToList();
+            List<int> gloomyIds = context.WishLists.Where(g => g.UserId == id).Select(g => g.GloomyId).ToList();
+            List<Gloomy> wishGloomies = new List<Gloomy>();
 
-            MyWishListViewModel viewModel = new MyWishListViewModel(gloomyIds);
-            return View(viewModel);
-         }
+            if(gloomyIds.Count != 0){
+               
+                foreach (int gloomyId in gloomyIds)
+                {
+                    IQueryable<Gloomy> q= context.Gloomies.Where(g => g.Id.Equals(gloomyId));
+                    List<Gloomy> listableQ = q.ToList();
+                    if(listableQ.Count != 0){
+                        foreach (Gloomy listable in listableQ)
+                    {
+                            wishGloomies.Add(listable);
+                        }
+                    }
+                    else {
+                        return View("NoGloomies");
+                    }
+                if(wishGloomies.Count != 0){
+                        
+                            return View(wishGloomies);
+
+                    }
+                    else
+                {
+                        return View("NoGloomies");
+                    }
+                }
+            }
+            else
+            {
+            
+                return View("NoGloomies");
+            }
+            return View();
+        }
+
+
     }
 }

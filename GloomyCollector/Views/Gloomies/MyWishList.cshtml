@@ -1,9 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using GloomyCollector.Models
+
 @inject UserManager<IdentityUser> UserManager
 
-@model GloomyCollector.ViewModels.MyWishListViewModel
+@*//added listed up here, it used to only have atmodel gloomycollector.viewmodels.mywishlistviewmodel*@
+@*@model GloomyCollector.ViewModels.MyWishListViewModel*@
 @*this will say hello username when user login feature is added*@
+@model Gloomy
 <h1>Hello @UserManager.GetUserName(User)!</h1>
 
 
@@ -41,16 +44,18 @@ else
             </tr>
         </thead>
         <tbody>
-            @*@foreach (Gloomy gloomie in Model)
-            {*@
-                <tr>
-                    <td><img class="tableImage" src="@Model.ImageData" /></td>
-                    <td>@Model.Name</td>
-                    <td>@Model.SerialNumber</td>
-                    <td>@Model.Year</td>
-                </tr>
-            @*}*@
+           @* @foreach (Gloomy feedback in (System.Collections.Generic.IEnumerable
+          <Gloomy>)ViewData.Model)*@
+@*@foreach(Gloomy gloomy in gloomies)
+            //{*@
+                    <tr>
+                        <td><img class="tableImage" src="@Model.ImageData" /></td>
+                        <td>@Model.Name</td>
+                        <td>@Model.SerialNumber</td>
+                        <td>@Model.Year</td>
+                    </tr>
+           @* }*@
         </tbody>
     </table>
-@*}*@
+
 

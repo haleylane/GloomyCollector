@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GloomyCollector.Models;
+using System.Net;
 
 namespace GloomyCollector.ViewModels
 {
@@ -12,7 +13,7 @@ namespace GloomyCollector.ViewModels
         public string Year { get; set; }
         public string ImageData { get; set; }
 
-        public MyWishListViewModel(Gloomy theGloomy)
+        public MyWishListViewModel(Gloomy theGloomy, List<Gloomy> gloomies)
         {
             GloomyId = theGloomy.Id;
             Name = theGloomy.Name;
@@ -20,19 +21,59 @@ namespace GloomyCollector.ViewModels
             Year = theGloomy.Year;
             ImageData = theGloomy.ImageData;
         }
+
+        //MyEnumerator GetEnumerator()
+        //public MyEnumerator GetEnumerator()
+        // {  
+        // return new MyEnumerator(this);  
+        //}  
+
+        // Declare the enumerator class:  
+        /*public class MyEnumerator
+             //{
+                // int nIndex;  
+           //MyWishListViewModel collection;  
+           //public MyEnumerator(MyWishListViewModel coll)
+                //{
+                     //collection = coll;
+                     //nIndex = -1;
+                 //}
+
+                // public bool MoveNext()
+          // {  
+              //nIndex++;  
+              //return (nIndex < collection.items.Length);
+                // }
+
+                // public int Current => collection.items[nIndex];
+        //}  
+
+        //public static void Main()
+        //{
+                 //MyWishListViewModel col = new MyWishListViewModel();
+                   
+                 //foreach (int i in col)   
+           //{  
+             // Console.WriteLine(i);
+                 //}
+             //}
+        // }*/
+        /// <summary>
+        /// ///////////
+        /// </summary>
         //public List<Wishist>
         //gloomy info
 
-        /*public MyWishListViewModel(List<int> gloomyIds){
-            for (var i = 0; i < gloomyIds.Count; i++) {
-            }*/
+        //public MyWishListViewModel(List<int> gloomyIds){
+            //for (var i = 0; i < gloomyIds.Count; i++) {*/
+
         public string TagText { get; set; }
-            public MyWishListViewModel(List<WishList> gloomyIds)
+    public MyWishListViewModel(List<WishList> gloomyIds)
             {
 
-                TagText = "";
+        TagText = "";
 
-                for (var i = 0; i < gloomyIds.Count; i++)
+        for (int i = 0; i < gloomyIds.Count; i++)
                 {
                     TagText += "#" + gloomyIds[i].GloomyId;
 
@@ -40,8 +81,8 @@ namespace GloomyCollector.ViewModels
                     {
                         TagText += ", ";
                     }
-                }
-            
         }
+
     }
-}
+
+}}
