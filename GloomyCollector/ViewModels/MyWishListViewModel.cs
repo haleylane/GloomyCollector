@@ -22,50 +22,7 @@ namespace GloomyCollector.ViewModels
             ImageData = theGloomy.ImageData;
         }
 
-        //MyEnumerator GetEnumerator()
-        //public MyEnumerator GetEnumerator()
-        // {  
-        // return new MyEnumerator(this);  
-        //}  
 
-        // Declare the enumerator class:  
-        /*public class MyEnumerator
-             //{
-                // int nIndex;  
-           //MyWishListViewModel collection;  
-           //public MyEnumerator(MyWishListViewModel coll)
-                //{
-                     //collection = coll;
-                     //nIndex = -1;
-                 //}
-
-                // public bool MoveNext()
-          // {  
-              //nIndex++;  
-              //return (nIndex < collection.items.Length);
-                // }
-
-                // public int Current => collection.items[nIndex];
-        //}  
-
-        //public static void Main()
-        //{
-                 //MyWishListViewModel col = new MyWishListViewModel();
-                   
-                 //foreach (int i in col)   
-           //{  
-             // Console.WriteLine(i);
-                 //}
-             //}
-        // }*/
-        /// <summary>
-        /// ///////////
-        /// </summary>
-        //public List<Wishist>
-        //gloomy info
-
-        //public MyWishListViewModel(List<int> gloomyIds){
-            //for (var i = 0; i < gloomyIds.Count; i++) {*/
 
         public string TagText { get; set; }
     public MyWishListViewModel(List<WishList> gloomyIds)

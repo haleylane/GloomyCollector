@@ -90,9 +90,9 @@ else {*@
     <tbody>
         @foreach (Gloomy gloomy in ViewBag.wishListGloomies)
         {
-            <tr>
+            <tr onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
                 <td><img class="tableImage" src="~/@gloomy.ImageData" /></td>
-                <td>@gloomy.Name</td>
+                <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomy.Id"> @gloomy.Name </a></td>
                 <td>@gloomy.SerialNumber</td>
                 <td>@gloomy.Year</td> 
             </tr>}

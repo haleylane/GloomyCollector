@@ -11,25 +11,44 @@
 @using Microsoft.AspNetCore.Identity
 @using GloomyCollector.Models
 @inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
 
 @model List<Gloomy>
 @*this will say hello username when user login feature is added*@
-<h1>Hello @UserManager.GetUserName(User)!</h1>
 
-<div class="text-center">
-    <p>
-        <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a> ♡
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1>Hello @UserManager.GetUserName(User)!</h1>
 
-
-        <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a> ♡
-
-
-        <a asp-controller="Gloomies" asp-action="AddWishList">Add to WishList</a> ♡
+        <p>
+            <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a> ♡
 
 
-        <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)">My WishList</a>
-    </p>
-</div>
+            <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a> ♡
+
+
+            <a asp-controller="Gloomies" asp-action="AddWishList">Add to WishList</a> ♡
+
+
+            <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)"> My WishList </a>
+        </p>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1>Hello Gloomy Bear Collector!</h1>
+        <p><a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a> a new account to explore everything Gloomy Collector has to offer!</p>
+
+        <p>
+            <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a> ♡
+
+
+            <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a> ♡
+        </p>
+    </div>
+}
 
 @** Add (this will be dependent on admin privileges)
 
@@ -62,8 +81,7 @@ else
             @foreach (Gloomy gloomie in Model)
             {
                 <tr onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
-                    @*<td><a asp-controller="Gloomies" asp-action="AddWishList" asp-route-id="@UserManager.GetUserId(User)" value="@UserManager.GetUserId(User)" >+</a></td>
-                        @*<td><a href="/Gloomies/AddWishList/@gloomie.Id">+</a></td>*@
+               
                     <td><img class="tableImage" src="@gloomie.ImageData" /></td>
                     <td><a asp-controller="Gloomies" asp-action="Detail" asp-route-id="@gloomie.Id">@gloomie.Name</a></td>
                     <td>@gloomie.SerialNumber</td>
@@ -74,17 +92,31 @@ else
     </table>}
 
 
-<div>
-    <p>Fill out this form to help us keep our database full:</p>
-    <form class="submitForm">
-        Name:<input type='text' name='uName' />
-        Serial Number:<input type='text' name="uSerial" />
-        Year:<input type="text" name="uYear" />
-        Extra Details:<input type="text" name="uExtra" />
-        <input type="submit" />
-    </form>
 
-</div>
+<!-- modify this form HTML and place wherever you want your form -->
 
-<partial name="/Views/Shared/_LinkListPartial.cshtml" />
+<form class="submitForm" action="https://formspree.io/f/xwkwdonr"
+      method="POST">
+    <label>
+        Name:
+        <input type="text" name="name">
+    </label>
+    <label>
+        Serial Number:
+        <input type="text" name="serialNum">
+    </label>
+    <label>
+        Year:
+        <input type="text" name="year">
+    </label>
+    <label>
+        Description:
+        <input type="text" name="descrip">
+    </label>
+
+    <!-- your other form fields go here -->
+
+    <button type="submit">Submit</button>
+</form>
+
 <partial name="/Views/Shared/_ThankYouPartial.cshtml" />

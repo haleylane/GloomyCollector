@@ -122,7 +122,7 @@ namespace GloomyCollector.Controllers
             return View(viewModel);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public IActionResult AddWishList(AddWishListViewModel viewModel)
         {
@@ -162,6 +162,11 @@ namespace GloomyCollector.Controllers
                 }
         }
             ViewBag.wishListGloomies = wishGloomies;
+            return View();
+        }
+
+        public IActionResult ThankYou()
+        {
             return View();
         }
 }
