@@ -1,12 +1,13 @@
 ﻿@model GloomyCollector.ViewModels.GloomyDetailViewModel
 
 
-<h1>@Model.Name</h1>
-
-<img class="aboutImage" src="~/@Model.ImageData" />
+<h1 align="middle">@Model.Name</h1>
+<div>
+<img class=".aboutImage" hspace="50" src="~/@Model.ImageData" align="left"/>
 
 <div class="aboutInfo">
     <p>Name: @Model.Name</p>
     <p>Serial Number: @Model.SerialNumber</p>
     <p>Year: @Model.Year</p>
 </div>
+    </div>

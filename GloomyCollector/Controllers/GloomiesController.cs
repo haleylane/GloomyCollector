@@ -26,8 +26,9 @@ namespace GloomyCollector.Controllers
         public IActionResult Index()
         {
             List<Gloomy> gloomies = context.Gloomies.ToList();
-
-            return View(gloomies);
+            List<Gloomy> gloomiesOrdered = gloomies.OrderByDescending(x => x.SerialNumber).ToList();
+ 
+            return View(gloomiesOrdered);
         }
 
         public IActionResult Add()

@@ -16,23 +16,24 @@
 @*this will say hello username when user login feature is added*@
 <h1>Hello @UserManager.GetUserName(User)!</h1>
 
+<div class="text-center">
+    <p>
+        <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a> ♡
 
-<p>
-    <a asp-controller="Gloomies" asp-action="Add">Add Gloomy</a>
-</p>
-<p>
-    <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a>
-</p>
-<p>
-    <a asp-controller="Gloomies" asp-action="AddWishList">Add to WishList</a>
-</p>
-<p>
-    <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)">My WishList</a>
-</p>
+
+        <a asp-controller="Gloomies" asp-action="Delete">Delete Gloomy</a> ♡
+
+
+        <a asp-controller="Gloomies" asp-action="AddWishList">Add to WishList</a> ♡
+
+
+        <a href="/Gloomies/MyWishList/@UserManager.GetUserId(User)">My WishList</a>
+    </p>
+</div>
 
 @** Add (this will be dependent on admin privileges)
 
-@Table with ViewAll*@
+    @Table with ViewAll*@
 @if (Model.Count == 0)
 {
     <p>No Gloomies yet!</p>
@@ -40,12 +41,12 @@
 else
 {
     <table class="table" id="gloomyTable">
-        <thead>
+        <thead class="text-center">
             <tr>
                 <th>
-                    ❤︎
+                    ♡
                 </th>
-               
+
                 <th>
                     Name
                 </th>
@@ -57,7 +58,7 @@ else
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
             @foreach (Gloomy gloomie in Model)
             {
                 <tr onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor='white'">
@@ -84,6 +85,6 @@ else
     </form>
 
 </div>
-}
-@**<partial name="/Views/Shared/_LinkListPartial.cshtml" />
-    <partial name="/Views/Shared/_ThankYouPartial.cshtml"/>*@
+
+<partial name="/Views/Shared/_LinkListPartial.cshtml" />
+<partial name="/Views/Shared/_ThankYouPartial.cshtml" />

@@ -79,8 +79,12 @@ body {
 .logoImage{
     max-width: 50px;
 }
-.aboutImage{
-    width: 100%;
+.aboutImage {
+    display: block;
+    max-width: 230px;
+    max-height: 95px;
+    width: auto;
+    height: auto;
 }
 .thankYou{
     color: hotpink;
